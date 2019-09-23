@@ -1,0 +1,26 @@
+#
+# Sprite sheet data for Unity.
+#
+# To import these sprites into your Unity project, download "TexturePackerImporter":
+# https://www.codeandweb.com/texturepacker/unity
+#
+# $TexturePacker:SmartUpdate:ef601ea14c0c1128f0653b66515eca63:abb953b585430dcc780f6a476fdad594:3adcebe0eaea045642fa2ba3c3190833$
+#
+:format=40300
+:texture=island_MenuImages.png
+:size=1024x2048
+:pivotpoints=enabled
+:borders=disabled
+
+Blank (3);577;1110;422;575; 0.5;0.5; 0;0;0;0
+Blank (4);1;22;422;575; 0.5;0.5; 0;0;0;0
+Blank;1;1687;889;360; 0.5;0.5; 0;0;0;0
+center_focus;1;599;513;513; 0.5;0.5; 0;0;0;0
+LevelSelect (3);516;390;274;277; 0.5;0.5; 0;0;0;0
+menu;516;669;284;151; 0.5;0.5; 0;0;0;0
+Play (3);425;111;274;277; 0.5;0.5; 0;0;0;0
+play;802;669;207;151; 0.5;0.5; 0;0;0;0
+rainbowRadial;1;1114;574;571; 0.5;0.5; 0;0;0;0
+Start;701;84;242;151; 0.5;0.5; 0;0;0;0
+story;701;237;253;151; 0.5;0.5; 0;0;0;0
+worldPainter;516;822;345;286; 0.5;0.5; 0;0;0;0

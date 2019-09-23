@@ -1,0 +1,15 @@
+version: 2
+importPivots: 1
+tpsheetFileNames:
+- Assets/codeandweb.com/Example/SpriteSheet/sprites.tpsheet
+- Assets/Images_Packed/combinedSpritesMenus.tpsheet
+- Assets/Images_Packed/Island_Canvas/island_MenuImages.tpsheet
+textureFileNames:
+- Assets/codeandweb.com/Example/SpriteSheet/sprites.png
+- Assets/Images_Packed/combinedSpritesMenus.png
+- Assets/Images_Packed/Island_Canvas/island_MenuImages.png
+normalmapFileNames:
+- Assets/codeandweb.com/Example/SpriteSheet/sprites_n.png
+- 
+- 
+enableDebugOutput: 0
