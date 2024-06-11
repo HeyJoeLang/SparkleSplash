@@ -16,8 +16,6 @@ public class GazeCaster : GazeModeListener {
     [SerializeField]    private MeshRenderer render_horn;
     [SerializeField]    private Canvas ui_reticle;
     [SerializeField]    private AudioClip sfx_Environment;
-    [SerializeField]    private Transform trans_colorSelection;
-    [SerializeField]    private Es.InkPainter.Brush brush;
     [SerializeField]    private ParticleSystem particleSystem_hit;
     [SerializeField]    private Material environmentMat;
 
@@ -35,7 +33,6 @@ public class GazeCaster : GazeModeListener {
         Vector3 originalScale = ui_reticle.transform.localScale;
         ui_reticle.transform.localScale = originalScale * 5;
         source = GetComponent<AudioSource>();
-        brush.Color = Color.blue;
 
         StartCoroutine("TimedBurst");
     }
@@ -71,7 +68,6 @@ public class GazeCaster : GazeModeListener {
         StopAllCoroutines();
         StartCoroutine("TimedBurst");
     }
-
     #endregion
     #region Casting Gazes
     void PreviewLine()
@@ -93,12 +89,6 @@ public class GazeCaster : GazeModeListener {
             {
                 ui_reticle.transform.position = hit.point - (hit.point - transform.position) * .1f;
                 ui_reticle.gameObject.SetActive(true);
-                PaintCan can = hit.collider.GetComponent<PaintCan>();
-                if (can != null)
-                {
-                   UpdatePaintColor(hit);
-                   trans_colorSelection.position = can.transform.position; 
-                }
                 lineRenderer.SetPosition(1, render_horn.transform.position);
                 StopCoroutine("TimedBurst");
                 lastFrameWasUI = true;
@@ -157,7 +147,7 @@ public class GazeCaster : GazeModeListener {
                 Animator anim = hit.collider.GetComponentInParent<Animator>();
                 if (anim != null && !anim.enabled)
                 {
-                    anim.speed = 2;
+                    anim.speed = .5f;
                     anim.enabled = true;
                 }
             }
@@ -193,7 +183,7 @@ public class GazeCaster : GazeModeListener {
             yield break;
         if (material.GetFloat("_Threshold") != 1.1f)
                 yield break;
-        for (float i = 1.1f; i >= 0f; i -= Time.deltaTime * 2)
+        for (float i = 1.1f; i >= 0f; i -= Time.deltaTime * .5f)
         {
             material.SetFloat("_Threshold", i);
             yield return null;
@@ -205,30 +195,6 @@ public class GazeCaster : GazeModeListener {
     {
         yield return new WaitForSeconds(1);
         material.SetFloat("_Threshold", 0);
-    }
-
-    #endregion
-    #region Modify Colors
-
-    void UpdatePaintColor(RaycastHit hit)
-    {
-        PaintCan paintCan = hit.transform.GetComponent<PaintCan>();
-        if (paintCan != null)
-        {
-            color_brush = paintCan.color;
-            brush.Color = render_horn.material.color = new Color(paintCan.color.r, paintCan.color.g, paintCan.color.b);
-        }
-    }
-
-    bool UpdatePaint(RaycastHit hit)
-    {
-        Es.InkPainter.InkCanvas paintObject = hit.transform.GetComponent<Es.InkPainter.InkCanvas>();
-        if (paintObject != null)
-        {
-            paintObject.Paint(brush, hit);
-            return true; 
-        }
-        return false; 
     }
 
     #endregion

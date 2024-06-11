@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -8,10 +7,8 @@ public class PageContent
     public float prePageDelay;
     public AudioClip pageVocals;
 }
-
 public class StoryController : MonoBehaviour {
-    public FadeTutorial fade;
-    public SceneLoader loader;
+    public FadeLoad fade;
     AudioSource source;
     public PageContent[] content;
     public AutoFlip flipper;
@@ -34,8 +31,6 @@ public class StoryController : MonoBehaviour {
             }
             flipper.FlipRightPage();
         }
-        fade.FadeOut();
-        yield return new WaitForSeconds(1.2f);
-        loader.LoadScene("LoadingScene");
+        fade.FadeOutLoadScene(2);
     }
 }
